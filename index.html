@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Inter:wght@300;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio | Dev Dashboard</title>
+    <!-- Fontes que imitam a escrita à mão e tipografia técnica -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Inter:wght@300;400;700&family=Fira+Code&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <aside class="sidebar">
-        <h2 class="logo">Meu Portfólio</h2>
+        <div class="logo">Meu Portfólio</div>
         <nav>
             <ul>
-                <li><a href="#hero">01. INÍCIO</a></li>
+                <li><a href="#inicio">01. INÍCIO</a></li>
                 <li><a href="#sobre">02. SOBRE MIM</a></li>
                 <li><a href="#projetos">03. PROJETOS</a></li>
+                <li><a href="#habilidades">04. HABILIDADES</a></li>
             </ul>
         </nav>
-        <div class="note-box">"Criando hoje soluções para o amanhã"</div>
+        <div class="note-sticker">
+            "Criando hoje soluções para o amanhã"
+        </div>
     </aside>
 
     <main class="content">
-        <section id="hero">
-            <h1>IDEIAS, CÓDIGOS, IMPACTO</h1>
-            <p>Transformo ideias em experiências digitais.</p>
+        <section id="inicio" class="hero">
+            <h1>IDEIAS<br>CÓDIGOS<br>POSSIBILIDADES<br><span>IMPACTO</span></h1>
+            <p>Transformo ideias em experiências digitais e soluções que fazem a diferença.</p>
         </section>
 
-        <section id="sobre" class="paper-sheet">
-            <h3>Sobre Mim</h3>
-            <p>Desenvolvedor apaixonado por tecnologia e soluções que conectam pessoas.</p>
-            <div class="post-it">Curioso & Criativo</div>
+        <div class="grid-layout">
+            <section id="sobre" class="paper-sheet">
+                <h3>Sobre Mim</h3>
+                <p>Desenvolvedor apaixonado por tecnologia e soluções que conectam pessoas. Curioso, criativo e sempre aprendendo novas tecnologias para otimizar meu fluxo de trabalho.</p>
+            </section>
+
+            <section id="projetos" class="projects-container">
+                <h3>Projetos</h3>
+                <div class="project-card">
+                    <h4>TaskFlow</h4>
+                    <p>Organizador de tarefas com React e Node.js.</p>
+                </div>
+                <div class="project-card">
+                    <h4>EcoTrack</h4>
+                    <p>Plataforma ambiental para monitoramento.</p>
+                </div>
+                <div class="project-card">
+                    <h4>SoundVibe</h4>
+                    <p>Interface de player de música moderna.</p>
+                </div>
+            </section>
+        </div>
+
+        <section id="habilidades" class="paper-sheet">
+            <h3>Habilidades</h3>
+            <div class="skills-grid">
+                <span>React</span> <span>Node.js</span> <span>Docker</span> <span>Nginx</span> <span>JavaScript</span>
+            </div>
         </section>
     </main>
 
+    <script src="script.js"></script>
 </body>
 </html>
