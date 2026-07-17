@@ -3,13 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maicon Oliveira | Portfolio</title>
 
-<link rel="stylesheet" href="css/style.css">
+<title>Portfolio | Maicon Oliveira</title>
 
-<script src="https://kit.fontawesome.com/your-key.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
 
 <div class="sidebar">
@@ -17,11 +22,11 @@
     <h1>Meu<br>Portfólio</h1>
 
     <nav>
-        <a href="#home">Início</a>
-        <a href="#about">Sobre</a>
-        <a href="#projects">Projetos</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contato</a>
+        <a href="#home">01. Início</a>
+        <a href="#about">02. Sobre</a>
+        <a href="#projects">03. Projetos</a>
+        <a href="#skills">04. Skills</a>
+        <a href="#contact">05. Contato</a>
     </nav>
 
 </div>
@@ -43,10 +48,25 @@
         <h3>IMPACTO</h3>
 
         <p>
-            Transformando ideias em soluções digitais.
+            Transformando ideias em experiências digitais,
+            automação e soluções que fazem a diferença.
         </p>
 
-        <button>Conheça meu trabalho</button>
+        <div class="hero-buttons">
+
+            <a href="#projects" class="btn-primary">
+                Ver Projetos
+            </a>
+
+            <a
+                href="https://github.com/emaiconoliveira"
+                target="_blank"
+                class="btn-secondary"
+            >
+                GitHub
+            </a>
+
+        </div>
 
     </div>
 
@@ -54,72 +74,93 @@
 
 <section id="about">
 
-<h2>Sobre Mim</h2>
+    <h2>Sobre Mim</h2>
 
-<p>
-Graduado em Ciência da Computação e pós-graduando em Cloud Computing.
-Experiência em mídia, infraestrutura, automação e DevOps.
-</p>
+    <p>
+        Sou Maicon Oliveira, graduado em Ciência da Computação e
+        pós-graduando em Cloud Computing.
+    </p>
+
+    <p>
+        Atuo na área de mídia, infraestrutura, automação e DevOps,
+        sempre buscando criar soluções inteligentes para problemas reais.
+    </p>
 
 </section>
 
 <section id="projects">
 
-<h2>Projetos</h2>
+    <h2>Projetos</h2>
 
-<div class="cards">
+    <div class="cards">
 
-<div class="card">
-<h3>TaskFlow</h3>
-<p>Gerenciador de tarefas.</p>
-</div>
+        <div class="card">
+            <h3>Simulador Uber SP</h3>
+            <p>
+                Simulador de ganhos para motoristas em São Paulo.
+            </p>
+        </div>
 
-<div class="card">
-<h3>EcoTrack</h3>
-<p>Monitoramento ambiental.</p>
-</div>
+        <div class="card">
+            <h3>Automação Python</h3>
+            <p>
+                Ferramentas para automatizar tarefas repetitivas.
+            </p>
+        </div>
 
-<div class="card">
-<h3>MediaTools</h3>
-<p>Ferramentas para TV e Broadcast.</p>
-</div>
+        <div class="card">
+            <h3>Media Tools</h3>
+            <p>
+                Soluções para mídia, TV e broadcast.
+            </p>
+        </div>
 
-</div>
+    </div>
 
 </section>
 
 <section id="skills">
 
-<h2>Habilidades</h2>
+    <h2>Skills</h2>
 
-<div class="skills-grid">
+    <div class="skills-grid">
 
-<span>Python</span>
-<span>Docker</span>
-<span>Kubernetes</span>
-<span>Azure</span>
-<span>Git</span>
-<span>Terraform</span>
-<span>Linux</span>
-<span>JavaScript</span>
+        <span>Python</span>
+        <span>Docker</span>
+        <span>Kubernetes</span>
+        <span>Azure</span>
+        <span>Terraform</span>
+        <span>Linux</span>
+        <span>Git</span>
+        <span>JavaScript</span>
 
-</div>
+    </div>
 
 </section>
 
 <section id="contact">
 
-<h2>Contato</h2>
+    <h2>Contato</h2>
 
-<p>Email: seuemail@email.com</p>
+    <p>
+        GitHub:
+        <a href="https://github.com/emaiconoliveira" target="_blank">
+            emaiconoliveira
+        </a>
+    </p>
 
-<p>GitHub: github.com/maicon</p>
+    <p>
+        LinkedIn:
+        <a href="https://www.linkedin.com/in/emaiconoliveira/" target="_blank">
+            Maicon Oliveira
+        </a>
+    </p>
 
 </section>
 
 </main>
 
-<script src="js/script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
