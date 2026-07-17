@@ -1,0 +1,49 @@
+:root {
+    --bg: #0a0a0a;
+    --card: rgba(255, 255, 255, 0.05);
+    --text: #e0e0e0;
+    --accent: #00ff9d;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 2rem;
+}
+
+.terminal-header {
+    margin-bottom: 3rem;
+}
+
+.status-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1rem;
+}
+
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card);
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+}
