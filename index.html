@@ -1,67 +1,125 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio | Dev Dashboard</title>
-    <!-- Fontes que imitam a escrita à mão e tipografia técnica -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Inter:wght@300;400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maicon Oliveira | Portfolio</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://kit.fontawesome.com/your-key.js"></script>
+
 </head>
 <body>
 
-    <aside class="sidebar">
-        <div class="logo">Meu Portfólio</div>
-        <nav>
-            <ul>
-                <li><a href="#inicio">01. INÍCIO</a></li>
-                <li><a href="#sobre">02. SOBRE MIM</a></li>
-                <li><a href="#projetos">03. PROJETOS</a></li>
-                <li><a href="#habilidades">04. HABILIDADES</a></li>
-            </ul>
-        </nav>
-        <div class="note-sticker">
-            "Criando hoje soluções para o amanhã"
-        </div>
-    </aside>
+<div class="sidebar">
 
-    <main class="content">
-        <section id="inicio" class="hero">
-            <h1>IDEIAS<br>CÓDIGOS<br>POSSIBILIDADES<br><span>IMPACTO</span></h1>
-            <p>Transformo ideias em experiências digitais e soluções que fazem a diferença.</p>
-        </section>
+    <h1>Meu<br>Portfólio</h1>
 
-        <div class="grid-layout">
-            <section id="sobre" class="paper-sheet">
-                <h3>Sobre Mim</h3>
-                <p>Desenvolvedor apaixonado por tecnologia e soluções que conectam pessoas. Curioso, criativo e sempre aprendendo novas tecnologias para otimizar meu fluxo de trabalho.</p>
-            </section>
+    <nav>
+        <a href="#home">Início</a>
+        <a href="#about">Sobre</a>
+        <a href="#projects">Projetos</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contato</a>
+    </nav>
 
-            <section id="projetos" class="projects-container">
-                <h3>Projetos</h3>
-                <div class="project-card">
-                    <h4>TaskFlow</h4>
-                    <p>Organizador de tarefas com React e Node.js.</p>
-                </div>
-                <div class="project-card">
-                    <h4>EcoTrack</h4>
-                    <p>Plataforma ambiental para monitoramento.</p>
-                </div>
-                <div class="project-card">
-                    <h4>SoundVibe</h4>
-                    <p>Interface de player de música moderna.</p>
-                </div>
-            </section>
-        </div>
+</div>
 
-        <section id="habilidades" class="paper-sheet">
-            <h3>Habilidades</h3>
-            <div class="skills-grid">
-                <span>React</span> <span>Node.js</span> <span>Docker</span> <span>Nginx</span> <span>JavaScript</span>
-            </div>
-        </section>
-    </main>
+<main>
 
-    <script src="script.js"></script>
+<section id="home" class="hero">
+
+    <div class="hero-text">
+
+        <span>DESENVOLVEDOR • CLOUD • DEVOPS</span>
+
+        <h2>
+            IDEIAS<br>
+            CÓDIGOS<br>
+            POSSIBILIDADES
+        </h2>
+
+        <h3>IMPACTO</h3>
+
+        <p>
+            Transformando ideias em soluções digitais.
+        </p>
+
+        <button>Conheça meu trabalho</button>
+
+    </div>
+
+</section>
+
+<section id="about">
+
+<h2>Sobre Mim</h2>
+
+<p>
+Graduado em Ciência da Computação e pós-graduando em Cloud Computing.
+Experiência em mídia, infraestrutura, automação e DevOps.
+</p>
+
+</section>
+
+<section id="projects">
+
+<h2>Projetos</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>TaskFlow</h3>
+<p>Gerenciador de tarefas.</p>
+</div>
+
+<div class="card">
+<h3>EcoTrack</h3>
+<p>Monitoramento ambiental.</p>
+</div>
+
+<div class="card">
+<h3>MediaTools</h3>
+<p>Ferramentas para TV e Broadcast.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="skills">
+
+<h2>Habilidades</h2>
+
+<div class="skills-grid">
+
+<span>Python</span>
+<span>Docker</span>
+<span>Kubernetes</span>
+<span>Azure</span>
+<span>Git</span>
+<span>Terraform</span>
+<span>Linux</span>
+<span>JavaScript</span>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2>Contato</h2>
+
+<p>Email: seuemail@email.com</p>
+
+<p>GitHub: github.com/maicon</p>
+
+</section>
+
+</main>
+
+<script src="js/script.js"></script>
+
 </body>
 </html>
