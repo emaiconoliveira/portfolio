@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Dashboard | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Inter:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="terminal-header">
-        <div class="status-bar">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-            <span class="system-path">root@local:~ /portfolio</span>
-        </div>
-        <h1>Olá, eu sou <span id="typing-text"></span></h1>
-    </header>
+    <aside class="sidebar">
+        <h2 class="logo">Meu Portfólio</h2>
+        <nav>
+            <ul>
+                <li><a href="#hero">01. INÍCIO</a></li>
+                <li><a href="#sobre">02. SOBRE MIM</a></li>
+                <li><a href="#projetos">03. PROJETOS</a></li>
+            </ul>
+        </nav>
+        <div class="note-box">"Criando hoje soluções para o amanhã"</div>
+    </aside>
 
-    <main class="grid-container">
-        <section class="card">
-            <h3>Arquitetura</h3>
-            <p>Especialista em Docker, Nginx e automação de ambientes locais.</p>
+    <main class="content">
+        <section id="hero">
+            <h1>IDEIAS, CÓDIGOS, IMPACTO</h1>
+            <p>Transformo ideias em experiências digitais.</p>
         </section>
-        <section class="card">
-            <h3>Front-end</h3>
-            <p>UI responsiva com HTML5, CSS3 avançado e JS interativo.</p>
-        </section>
-        <section class="card">
-            <h3>Projetos</h3>
-            <p>Gestão de serviços e migração de infraestrutura (Firebase > Local).</p>
+
+        <section id="sobre" class="paper-sheet">
+            <h3>Sobre Mim</h3>
+            <p>Desenvolvedor apaixonado por tecnologia e soluções que conectam pessoas.</p>
+            <div class="post-it">Curioso & Criativo</div>
         </section>
     </main>
 
-    <script src="script.js"></script>
 </body>
 </html>
