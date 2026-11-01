@@ -1,71 +1,74 @@
-document.addEventListener('DOMContentLoaded', () => {
-  
-  // 1. Efeito Tilt (inclinação 3D sutil) nos cards
-  const cards = document.querySelectorAll('.project-card');
+// --- Lógica do Catálogo de Prompts Dinâmico ---
 
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left; 
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const tiltX = ((x - centerX) / centerX) * 5; 
-      const tiltY = ((y - centerY) / centerY) * -5;
-      
-      card.style.transform = `perspective(1000px) rotateX(${tiltY}deg) rotateY(${tiltX}deg) translateY(-5px)`;
-    });
+// 1. Array inicial caso não tenha nada salvo (Seu setup de iluminação e vintage)
+const defaultPrompts = [
+  {
+    id: 'p1',
+    title: 'Retrato Vintage 1980s',
+    image: 'https://via.placeholder.com/400x300/2a1b3d/ff007f?text=Vintage+1980s',
+    text: 'A cinematic 1980s style portrait photography of a young man, neon pink and cyan lighting, retro aesthetic, highly detailed, shot on 35mm film, vintage film grain.'
+  }
+];
 
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-      card.style.transition = 'transform 0.5s ease'; 
-    });
+// 2. Carrega os prompts salvos ou usa o padrão
+let savedPrompts = JSON.parse(localStorage.getItem('aiPrompts')) || defaultPrompts;
+
+// 3. Renderiza o catálogo na página prompts.html
+const catalogGrid = document.getElementById('catalogGrid');
+if (catalogGrid) {
+  savedPrompts.forEach(prompt => {
+    const card = document.createElement('div');
+    card.className = 'project-card glass';
+    card.setAttribute('data-tilt', 'true');
     
-    card.addEventListener('mouseenter', () => {
-      card.style.transition = 'none'; 
-    });
+    // Layout focado em catálogo: Imagem em destaque, título e botão embutido
+    card.innerHTML = `
+      <img src="${prompt.image}" alt="${prompt.title}" class="prompt-img" style="margin-bottom: 10px;">
+      <h3 style="text-align: center; font-size: 1rem;">${prompt.title}</h3>
+      <p id="${prompt.id}" style="display: none;">${prompt.text}</p> <!-- Texto oculto para cópia limpa -->
+      <button class="skill-tag copy-btn" onclick="copyPrompt('${prompt.id}', this)" style="width: 100%; margin-top: auto; padding: 12px;">
+        <i class="fa-solid fa-copy"></i> Copiar Prompt
+      </button>
+    `;
+    catalogGrid.appendChild(card);
   });
+}
 
-  // 2. Scroll Suave Apenas para links internos da página atual
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      // Ignora links vazios ou que apenas referenciam o topo isolado
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        targetElement.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }
-    });
+// 4. Salva novos prompts através da página config.html
+const promptForm = document.getElementById('promptForm');
+if (promptForm) {
+  promptForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const newPrompt = {
+      id: 'p' + Date.now(), // Gera um ID único
+      title: document.getElementById('promptTitle').value,
+      image: document.getElementById('promptImage').value,
+      text: document.getElementById('promptText').value
+    };
+    
+    savedPrompts.push(newPrompt);
+    localStorage.setItem('aiPrompts', JSON.stringify(savedPrompts));
+    
+    alert('Prompt adicionado com sucesso!');
+    promptForm.reset();
   });
+}
 
-});
-
-// 3. Função Global para Copiar Prompts (Usada no prompts.html)
-function copyPrompt(elementId, btnElement) {
+// 5. Função de Copiar atualizada
+window.copyPrompt = function(elementId, btnElement) {
   const promptText = document.getElementById(elementId).innerText;
   
   navigator.clipboard.writeText(promptText).then(() => {
     const originalHTML = btnElement.innerHTML;
-    
-    // Feedback visual de sucesso
     btnElement.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
     btnElement.style.color = '#10b981'; 
     btnElement.style.borderColor = '#10b981';
     
-    // Retorna ao estado original após 2 segundos
     setTimeout(() => {
       btnElement.innerHTML = originalHTML;
       btnElement.style.color = '';
       btnElement.style.borderColor = '';
     }, 2000);
-  }).catch(err => {
-    console.error('Falha ao copiar: ', err);
   });
-}
+};
