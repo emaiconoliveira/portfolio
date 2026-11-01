@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maicon Oliveira | Linux Server Deployment (Case Study)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <header class="glass">
+    <div class="logo">MO.</div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Início</a></li>
+      <li><a href="index.html#projects">Projetos</a></li>
+      <li><a href="prompts.html">Catálogo AI</a></li>
+      <li><a href="admin.html"><i class="fa-solid fa-lock"></i></a></li>
+    </ul>
+  </header>
+
+  <section class="hero glass-panel" style="margin-top: 140px; text-align: left;">
+    <div class="hero-content">
+      <span class="skill-tag" style="margin-bottom: 15px; display: inline-block; color: #10b981; border-color: #10b981;">Estudo de Caso</span>
+      <h1 style="font-size: 2.5rem; margin-bottom: 15px;">Linux Server Deployment</h1>
+      <p class="subtitle" style="margin-bottom: 25px;">Laboratório e implementação de ambiente de infraestrutura isolada, hospedagem containerizada e proxy reverso.</p>
+      
+      <div class="tags-container" style="margin-top: 0;">
+        <span class="skill-tag sm-tag">Linux</span>
+        <span class="skill-tag sm-tag">Docker</span>
+        <span class="skill-tag sm-tag">Docker Compose</span>
+        <span class="skill-tag sm-tag">Nginx</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-triangle-exclamation" style="color: #3b82f6; margin-right: 10px;"></i> O Problema</h2>
+      <p style="line-height: 1.8; opacity: 0.9;">
+        A gestão de múltiplos serviços web e ferramentas internas em ambientes de produção exige isolamento adequado de dependências, controle rigoroso de portas, segurança de rede e facilidade de escalabilidade sem dependência excessiva de soluções cloud proprietárias e custosas.
+      </p>
+    </div>
+
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-bullseye" style="color: #10b981; margin-right: 10px;"></i> Por que decidi desenvolvê-lo?</h2>
+      <p style="line-height: 1.8; opacity: 0.9;">
+        O projeto nasceu da necessidade de estruturar um ambiente auto-hospedado robusto para ferramentas internas e aplicações pessoais, consolidando competências avançadas em administração de sistemas Linux, containerização e automação de infraestrutura.
+      </p>
+    </div>
+
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-network-wired" style="color: #8b5cf6; margin-right: 10px;"></i> Arquitetura e Tecnologias</h2>
+      <ul style="line-height: 1.8; padding-left: 20px; opacity: 0.9;">
+        <li><strong>Sistema Operacional Base:</strong> Servidor Linux otimizado para baixo consumo de recursos e alta estabilidade.</li>
+        <li><strong>Containerização:</strong> Implementação de serviços isolados utilizando Docker e orquestração multi-container via Docker Compose.</li>
+        <li><strong>Proxy Reverso & SSL:</strong> Configuração do Nginx para gerenciar tráfego de entrada, roteamento de subdomínios e segurança de rede.</li>
+      </ul>
+    </div>
+
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-gears" style="color: #f59e0b; margin-right: 10px;"></i> Desafios Técnicos e Dificuldades</h2>
+      <p style="line-height: 1.8; opacity: 0.9;">
+        Ajustar as regras de roteamento do Nginx como proxy reverso para lidar com cabeçalhos de conexões WebSocket e persistência de sessões exigiu sintaxe avançada de blocos de configuração. Além disso, gerir volumes persistentes no Docker garantiu que atualizações de containers ocorressem sem perda de dados críticos.
+      </p>
+    </div>
+
+    <div class="grid-2-col" style="gap: 30px; margin-bottom: 50px;">
+      <div class="glass-panel text-left m-0" style="max-width: 100%; margin: 0;">
+        <h2><i class="fa-solid fa-user-gear" style="color: #3b82f6; margin-right: 10px;"></i> O que desenvolvi</h2>
+        <ul style="line-height: 1.8; padding-left: 20px; opacity: 0.9;">
+          <li>Provisionamento e endurecimento de segurança do servidor Linux.</li>
+          <li>Criação de arquivos Docker Compose modularizados para múltiplos serviços.</li>
+          <li>Configuração de redes virtuais internas e regras de proxy reverso.</li>
+        </ul>
+      </div>
+
+      <div class="glass-panel text-left m-0" style="max-width: 100%; margin: 0;">
+        <h2><i class="fa-solid fa-chart-line" style="color: #10b981; margin-right: 10px;"></i> O Resultado</h2>
+        <p style="line-height: 1.8; opacity: 0.9;">
+          Ambiente de infraestrutura altamente estável, seguro e flexível, demonstrando proficiência prática em DevOps, redes, administração de sistemas operacionais e arquitetura de servidores.
+        </p>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 40px;">
+      <a href="index.html#projects" class="btn-glass"><i class="fa-solid fa-arrow-left"></i> Voltar aos Projetos</a>
+    </div>
+  </section>
+
+  <footer>
+    <p class="text-center" style="padding: 20px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">© Maicon Oliveira</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
