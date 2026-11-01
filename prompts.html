@@ -8,19 +8,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+  <!-- Elementos de fundo -->
   <div class="bg-shape shape-1"></div>
   <div class="bg-shape shape-2"></div>
   <div class="bg-shape shape-3"></div>
 
+  <!-- Header -->
   <header class="glass">
     <div class="logo">MO.</div>
     <ul class="nav-links">
       <li><a href="index.html#home">Início</a></li>
       <li><a href="prompts.html" class="highlight-link">Catálogo AI</a></li>
-      <li><a href="config.html">Configuração</a></li>
+      <li><a href="admin.html">Configuração</a></li>
     </ul>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero glass-panel" style="margin-top: 150px;">
     <div class="hero-content">
       <h1>Catálogo de Prompts</h1>
@@ -28,11 +31,101 @@
     </div>
   </section>
 
+  <!-- Container do Catálogo Dinâmico -->
   <section class="container">
-    <!-- O JavaScript vai injetar os cards dinâmicos aqui dentro -->
+    <!-- O JavaScript do Firebase vai injetar os cards aqui dentro -->
     <div class="projects-grid" id="catalogGrid"></div>
   </section>
 
+  <!-- Script base do site (mantém a função copyPrompt global) -->
   <script src="script.js"></script>
+
+  <!-- Módulo Firebase para carregar os dados do Firestore -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+
+    // 1. INSIRA SUAS CHAVES DO FIREBASE AQUI
+    const firebaseConfig = {
+      apiKey: "SUA_API_KEY",
+      authDomain: "SEU_PROJETO.firebaseapp.com",
+      projectId: "SEU_PROJETO",
+      storageBucket: "SEU_PROJETO.appspot.com",
+      messagingSenderId: "SEU_ID",
+      appId: "SEU_APP_ID"
+    };
+
+    // 2. Inicializa o Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // 3. Função para buscar e exibir os prompts
+    async function carregarPrompts() {
+      const catalogGrid = document.getElementById('catalogGrid');
+      
+      // Mensagem de carregamento inicial
+      catalogGrid.innerHTML = '<p style="text-align:center; width: 100%; color: #10b981;">Carregando catálogo de IA...</p>';
+
+      try {
+        // Busca a coleção 'ai_prompts' ordenada do mais recente para o mais antigo
+        const q = query(collection(db, "ai_prompts"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+
+        catalogGrid.innerHTML = ''; // Limpa a mensagem de carregamento
+
+        if(querySnapshot.empty) {
+           catalogGrid.innerHTML = '<p style="text-align:center; width: 100%;">Nenhum prompt cadastrado no momento.</p>';
+           return;
+        }
+
+        // Para cada documento no banco, cria um card
+        querySnapshot.forEach((doc) => {
+          const prompt = doc.data();
+          const promptId = doc.id; // ID único gerado pelo Firebase
+
+          const card = document.createElement('div');
+          card.className = 'project-card glass';
+          card.setAttribute('data-tilt', 'true');
+          
+          card.innerHTML = `
+            <img src="${prompt.imageUrl}" alt="${prompt.title}" class="prompt-img" style="margin-bottom: 10px;">
+            <h3 style="text-align: center; font-size: 1rem;">${prompt.title}</h3>
+            <p id="text-${promptId}" style="display: none;">${prompt.promptText}</p>
+            <button class="skill-tag copy-btn" onclick="copyPrompt('text-${promptId}', this)" style="width: 100%; margin-top: auto; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);">
+              <i class="fa-solid fa-copy"></i> Copiar Prompt
+            </button>
+          `;
+          
+          // Adiciona o efeito Tilt (Glassmorfismo) dinamicamente aos novos cards
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; 
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const tiltX = ((x - centerX) / centerX) * 5; 
+            const tiltY = ((y - centerY) / centerY) * -5;
+            card.style.transform = `perspective(1000px) rotateX(${tiltY}deg) rotateY(${tiltX}deg) translateY(-5px)`;
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+            card.style.transition = 'transform 0.5s ease'; 
+          });
+          card.addEventListener('mouseenter', () => {
+            card.style.transition = 'none'; 
+          });
+
+          catalogGrid.appendChild(card);
+        });
+
+      } catch (error) {
+        console.error("Erro ao buscar prompts:", error);
+        catalogGrid.innerHTML = '<p style="text-align:center; width: 100%; color: #ff0055;">Erro ao carregar o catálogo. Verifique o console para mais detalhes.</p>';
+      }
+    }
+
+    // Chama a função assim que a página carrega
+    carregarPrompts();
+  </script>
 </body>
 </html>
