@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Maicon Oliveira</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <header class="glass">
+    <div class="logo">MO.</div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Início</a></li>
+      <li><a href="prompts.html">Catálogo AI</a></li>
+      <li><a href="admin.html" class="highlight-link"><i class="fa-solid fa-lock"></i></a></li>
+    </ul>
+  </header>
+
+  <section id="loginScreen" class="container glass-panel" style="max-width: 400px; margin-top: 150px;">
+    <h2 class="text-center"><i class="fa-solid fa-lock"></i> Acesso Restrito</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" id="adminEmail" required>
+      </div>
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="adminPassword" required>
+      </div>
+      <button type="submit" class="btn-glass" style="width: 100%; margin-top: 10px;">Entrar</button>
+    </form>
+  </section>
+
+  <section id="adminDashboard" class="container admin-container glass">
+    <div style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center;">
+      <h2 class="m-0">Painel de Controle</h2>
+      <button id="logoutBtn" class="btn-glass" style="padding: 6px 15px; font-size: 0.8rem;"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
+    </div>
+    <div class="dashboard-layout" style="padding: 20px;">
+      <div class="sidebar">
+        <button class="tab-btn active" onclick="switchTab('analytics')"><i class="fa-solid fa-chart-line"></i> Analytics</button>
+        <button class="tab-btn" onclick="switchTab('promptManager')"><i class="fa-solid fa-image"></i> Catálogo de Prompts</button>
+      </div>
+      <div class="admin-content">
+        <div id="analytics" class="tab-section active">
+          <h3>Tráfego do Portfólio</h3>
+          <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-top: 15px;">
+            <canvas id="visitsChart" height="100"></canvas>
+          </div>
+        </div>
+        <div id="promptManager" class="tab-section">
+          <h3>Adicionar ao Catálogo IA</h3>
+          <form id="uploadPromptForm">
+            <div class="form-group">
+              <label>Título do Prompt</label>
+              <input type="text" id="promptTitle" required>
+            </div>
+            <div class="form-group">
+              <label>Fazer Upload da Imagem</label>
+              <input type="file" id="promptImageFile" accept="image/*" required style="background: rgba(0,0,0,0.1);">
+            </div>
+            <div class="form-group">
+              <label>Texto do Prompt de Geração</label>
+              <textarea id="promptText" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn-glass"><i class="fa-solid fa-cloud-arrow-up"></i> Fazer Upload e Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
