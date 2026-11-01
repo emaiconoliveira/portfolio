@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maicon Oliveira | Folder Watcher (Case Study)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <header class="glass">
+    <div class="logo">MO.</div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Início</a></li>
+      <li><a href="index.html#projects">Projetos</a></li>
+      <li><a href="prompts.html">Catálogo AI</a></li>
+      <li><a href="admin.html"><i class="fa-solid fa-lock"></i></a></li>
+    </ul>
+  </header>
+
+  <section class="hero glass-panel" style="margin-top: 140px; text-align: left;">
+    <div class="hero-content">
+      <span class="skill-tag" style="margin-bottom: 15px; display: inline-block; color: #10b981; border-color: #10b981;">Estudo de Caso</span>
+      <h1 style="font-size: 2.5rem; margin-bottom: 15px;">Folder Watcher</h1>
+      <p class="subtitle" style="margin-bottom: 25px;">Sistema de monitoramento de diretórios em tempo real, identificação de eventos e organização automatizada de arquivos.</p>
+      
+      <div class="tags-container" style="margin-top: 0;">
+        <span class="skill-tag sm-tag">Python</span>
+        <span class="skill-tag sm-tag">PyQt</span>
+        <span class="skill-tag sm-tag">File System Events</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-triangle-exclamation" style="color: #3b82f6; margin-right: 10px;"></i> O Problema</h2>
+      <p style="line-height: 1.8; opacity: 0.9;">
+        Em ambientes corporativos ou fluxos de ingestão de mídias, a chegada constante de novos ficheiros em diretórios locais ou de rede exige triagem, renomeação e encaminhamento imediatos. Processos manuais propiciam erros humanos, atrasos operacionais e desorganização de assets críticos.
+      </p>
+    </div>
+
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-bullseye" style="color: #10b981; margin-right: 10px;"></i> Por que decidi desenvolvê-lo?</h2>
+      <p style="line-height: 1.8; opacity: 0.9;">
+        Desenvolvi esta solução para automatizar rotinas repetitivas de manipulação de ficheiros, eliminando gargalos operacionais e aplicando conceitos avançados de programação orientada a eventos e interfaces desktop responsivas em Python.
+      </p>
+    </div>
+
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-network-wired" style="color: #8b5cf6; margin-right: 10px;"></i> Arquitetura e Tecnologias</h2>
+      <ul style="line-height: 1.8; padding-left: 20px; opacity: 0.9;">
+        <li><strong>Core em Python:</strong> Utilização de bibliotecas de escuta de eventos de sistema de ficheiros para detetar criações e modificações em tempo real.</li>
+        <li><strong>Interface Gráfica (PyQt):</strong> Construção de um painel de controlo leve para visualização de logs, status de monitoramento e configuração de diretórios de origem/destino.</li>
+        <li><strong>Tratamento de Concorrência:</strong> Uso de threads para garantir que a escuta de eventos em background não trave a interface gráfica do usuário.</li>
+      </ul>
+    </div>
+
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-gears" style="color: #f59e0b; margin-right: 10px;"></i> Desafios Técnicos e Dificuldades</h2>
+      <p style="line-height: 1.8; opacity: 0.9;">
+        O principal desafio técnico foi lidar com arquivos grandes que ainda estavam a ser copiados para a pasta no momento do disparo do evento. Para resolver isso, implementei rotinas de verificação de bloqueio e estabilização de tamanho de arquivo antes de iniciar o processo de movimentação automática.
+      </p>
+    </div>
+
+    <div class="grid-2-col" style="gap: 30px; margin-bottom: 50px;">
+      <div class="glass-panel text-left m-0" style="max-width: 100%; margin: 0;">
+        <h2><i class="fa-solid fa-user-gear" style="color: #3b82f6; margin-right: 10px;"></i> O que desenvolvi</h2>
+        <ul style="line-height: 1.8; padding-left: 20px; opacity: 0.9;">
+          <li>Arquitetura da lógica de escuta e triagem de diretórios.</li>
+          <li>Desenvolvimento da interface gráfica interativa com PyQt.</li>
+          <li>Mecanismo de tratamento de exceções para arquivos em uso.</li>
+        </ul>
+      </div>
+
+      <div class="glass-panel text-left m-0" style="max-width: 100%; margin: 0;">
+        <h2><i class="fa-solid fa-chart-line" style="color: #10b981; margin-right: 10px;"></i> O Resultado</h2>
+        <p style="line-height: 1.8; opacity: 0.9;">
+          O Folder Watcher entregou uma automação robusta e sem fricção, validando competências essenciais em desenvolvimento backend, automação de processos e construção de utilitários desktop eficientes.
+        </p>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 40px;">
+      <a href="index.html#projects" class="btn-glass"><i class="fa-solid fa-arrow-left"></i> Voltar aos Projetos</a>
+    </div>
+  </section>
+
+  <footer>
+    <p class="text-center" style="padding: 20px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">© Maicon Oliveira</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
