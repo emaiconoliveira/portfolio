@@ -39,9 +39,13 @@ body {
 /* Header */
 header {
   position: fixed;
-  top: 0; width: 100%; z-index: 100;
+  top: 0; 
+  width: 100%; 
+  z-index: 100;
   padding: 15px 30px;
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; 
+  align-items: center;
+  justify-content: center; /* Centraliza a nav-links no meio da tela */
   box-sizing: border-box;
 }
 
