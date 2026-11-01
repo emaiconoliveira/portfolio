@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maicon Oliveira | Pop Art Portfolio</title>
+  <title>Maicon Oliveira | Portfolio Glassmorphism</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Ícones do FontAwesome para as redes sociais -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <!-- Header & Nav -->
-  <header>
+  <!-- Elementos de fundo para destacar a transparência -->
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <!-- Header -->
+  <header class="glass">
     <nav>
-      <div class="logo">Bem-Vindo!</div>
+      <div class="logo">MO.</div>
       <ul class="nav-links">
         <li><a href="#home">Início</a></li>
         <li><a href="#projects">Projetos</a></li>
@@ -25,100 +29,63 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="home" class="hero">
+  <section id="home" class="hero glass-panel">
     <div class="hero-content">
-      <span class="sticker-badge">POW!</span>
-      <h1>Criando experiências digitais</h1>
+      <h1>Maicon Oliveira</h1>
       <p class="subtitle">Cloud Computing • DevOps • Automação • Desenvolvimento Web</p>
-      <a href="#projects" class="pop-btn">VER PROJETOS <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="#projects" class="btn-glass">Ver Projetos</a>
     </div>
   </section>
 
   <!-- Projetos -->
   <section id="projects" class="container">
-    <h2 class="pop-title">Projetos em Destaque</h2>
+    <h2>Projetos em Destaque</h2>
     <div class="projects-grid">
       
-      <div class="project-card">
-        <div class="card-tag">WEB</div>
-        <h3>Portfolio Pop Art</h3>
-        <p>Site profissional responsivo criado com estética vibrante inspirada em histórias em quadrinhos vintage.</p>
-        <div class="card-footer">
-          <a href="https://github.com/emaiconoliveira/portfolio" target="_blank" class="card-btn"><i class="fa-brands fa-github"></i> Código</a>
-        </div>
+      <div class="project-card glass" data-tilt>
+        <h3>Portfolio Moderno</h3>
+        <p>Site profissional responsivo criado com estética Glassmorphism, focado em UI limpa e moderna.</p>
+        <a href="https://github.com/emaiconoliveira/portfolio" target="_blank" class="btn-glass-sm"><i class="fa-brands fa-github"></i> Repositório</a>
       </div>
 
-      <div class="project-card">
-        <div class="card-tag">CLOUD</div>
+      <div class="project-card glass" data-tilt>
         <h3>Dashboard Cloud</h3>
-        <p>Sistema de monitoramento e métricas para acompanhamento de infraestrutura em nuvem e containers.</p>
-        <div class="card-footer">
-          <a href="#" target="_blank" class="card-btn"><i class="fa-brands fa-github"></i> Código</a>
-        </div>
+        <p>Sistema de monitoramento e métricas para acompanhamento de infraestrutura em nuvem e containers Docker/Kubernetes.</p>
+        <a href="#" target="_blank" class="btn-glass-sm"><i class="fa-brands fa-github"></i> Repositório</a>
       </div>
 
-      <div class="project-card">
-        <div class="card-tag">PYTHON</div>
+      <div class="project-card glass" data-tilt>
         <h3>Automação Python</h3>
-        <p>Scripts e rotinas para automação de tarefas repetitivas, processamento de dados e integração.</p>
-        <div class="card-footer">
-          <a href="#" target="_blank" class="card-btn"><i class="fa-brands fa-github"></i> Código</a>
-        </div>
+        <p>Scripts otimizados para processamento de dados, integração de APIs e automação de tarefas repetitivas.</p>
+        <a href="#" target="_blank" class="btn-glass-sm"><i class="fa-brands fa-github"></i> Repositório</a>
       </div>
 
     </div>
   </section>
 
   <!-- Skills -->
-  <section id="skills" class="container">
-    <h2 class="pop-title">Habilidades</h2>
+  <section id="skills" class="container glass-panel">
+    <h2>Stack Tecnológica</h2>
     <div class="skills-box">
-      <span class="skill-badge">HTML5</span>
-      <span class="skill-badge">CSS3</span>
-      <span class="skill-badge">JavaScript</span>
-      <span class="skill-badge">Python</span>
-      <span class="skill-badge">Docker</span>
-      <span class="skill-badge">Kubernetes</span>
-      <span class="skill-badge">Azure DevOps</span>
-      <span class="skill-badge">Cloud Computing</span>
-      <span class="skill-badge">Linux</span>
-      <span class="skill-badge">Nginx</span>
-    </div>
-  </section>
-
-  <!-- Sobre Mim (Com Balão de Fala estilo HQ) -->
-  <section id="about" class="container">
-    <h2 class="pop-title">Sobre Mim</h2>
-    <div class="speech-bubble">
-      <p>Profissional de Tecnologia apaixonado por resolver problemas complexos! Tenho experiência com infraestrutura em nuvem, automação de processos, contêineres e desenvolvimento de aplicações web eficientes.</p>
-      <div class="about-action">
-        <a href="#" class="pop-btn alt-color"><i class="fa-solid fa-file-arrow-down"></i> Baixar Currículo</a>
-      </div>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Docker</span>
+      <span class="skill-tag">Kubernetes</span>
+      <span class="skill-tag">Nginx</span>
+      <span class="skill-tag">Linux</span>
+      <span class="skill-tag">Azure DevOps</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">CSS3</span>
     </div>
   </section>
 
   <!-- Contato -->
-  <section id="contact" class="container">
-    <h2 class="pop-title">Contato</h2>
-    <div class="contact-grid">
-      <a href="https://linkedin.com" target="_blank" class="contact-card">
-        <i class="fa-brands fa-linkedin"></i>
-        <span>LinkedIn</span>
-      </a>
-      <a href="https://github.com/emaiconoliveira" target="_blank" class="contact-card">
-        <i class="fa-brands fa-github"></i>
-        <span>GitHub</span>
-      </a>
-      <a href="https://wa.me/" target="_blank" class="contact-card">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span>WhatsApp</span>
-      </a>
+  <section id="contact" class="container glass-panel text-center">
+    <h2>Vamos Conversar?</h2>
+    <div class="contact-links">
+      <a href="https://linkedin.com" target="_blank" class="btn-glass"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/emaiconoliveira" target="_blank" class="btn-glass"><i class="fa-brands fa-github"></i> GitHub</a>
     </div>
   </section>
-
-  <footer>
-    <p>© Maicon Oliveira • Estilo Pop Art</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>
