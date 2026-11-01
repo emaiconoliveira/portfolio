@@ -72,3 +72,27 @@ window.copyPrompt = function(elementId, btnElement) {
     }, 2000);
   });
 };
+
+// Função para copiar o texto do prompt de IA
+function copyPrompt(elementId, btnElement) {
+  // Pega o texto do elemento
+  const promptText = document.getElementById(elementId).innerText;
+  
+  // Usa a API da área de transferência
+  navigator.clipboard.writeText(promptText).then(() => {
+    // Feedback visual
+    const originalHTML = btnElement.innerHTML;
+    btnElement.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+    btnElement.style.color = '#10b981'; // Muda para verde
+    btnElement.style.borderColor = '#10b981';
+    
+    // Retorna ao normal após 2 segundos
+    setTimeout(() => {
+      btnElement.innerHTML = originalHTML;
+      btnElement.style.color = '';
+      btnElement.style.borderColor = '';
+    }, 2000);
+  }).catch(err => {
+    console.error('Falha ao copiar: ', err);
+  });
+}
