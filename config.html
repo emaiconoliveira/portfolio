@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maicon Oliveira | Configurar Prompts</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <header class="glass">
+    <div class="logo">MO.</div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Início</a></li>
+      <li><a href="prompts.html">Catálogo AI</a></li>
+      <li><a href="config.html" class="highlight-link">Configuração</a></li>
+    </ul>
+  </header>
+
+  <section class="container glass-panel" style="margin-top: 150px; text-align: left;">
+    <h2 style="text-align: center;">Cadastrar Novo Prompt</h2>
+    <form id="promptForm" style="display: flex; flex-direction: column; gap: 15px;">
+      
+      <label>Título do Estilo (Ex: Retrato Vintage 1980s)</label>
+      <input type="text" id="promptTitle" required style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff;">
+      
+      <label>URL da Imagem (Link direto da foto)</label>
+      <input type="url" id="promptImage" required style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff;">
+      
+      <label>Texto do Prompt</label>
+      <textarea id="promptText" rows="4" required style="padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: #fff;"></textarea>
+      
+      <button type="submit" class="btn-glass" style="margin-top: 10px;"><i class="fa-solid fa-plus"></i> Adicionar ao Catálogo</button>
+    </form>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
