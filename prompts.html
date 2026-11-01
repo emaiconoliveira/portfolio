@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maicon Oliveira | AI Photo Prompts</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <!-- Header -->
+  <header class="glass">
+    <div class="logo">MO.</div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Início</a></li>
+      <li><a href="index.html#projects">Projetos Tech</a></li>
+      <li><a href="prompts.html" class="highlight-link">AI Prompts</a></li>
+    </ul>
+  </header>
+
+  <!-- Hero Section Prompts -->
+  <section class="hero glass-panel" style="margin-top: 150px;">
+    <div class="hero-content">
+      <h1>AI Photo Prompts</h1>
+      <p class="subtitle">Explorando criatividade, estética vintage e iluminação através de Inteligência Artificial.</p>
+    </div>
+  </section>
+
+  <!-- Galeria de Prompts -->
+  <section class="container">
+    <div class="projects-grid">
+      
+      <!-- Prompt 1 -->
+      <div class="project-card glass" data-tilt>
+        <img src="https://via.placeholder.com/400x300/2a1b3d/ff007f?text=Vintage+1980s" alt="Vintage 1980s" class="prompt-img">
+        <h3>Retrato Vintage 1980s</h3>
+        <p class="prompt-text" id="prompt1">"A cinematic 1980s style portrait photography of a young man, neon pink and cyan lighting, retro aesthetic, highly detailed, shot on 35mm film, vintage film grain."</p>
+        <div class="tags-container">
+          <button class="skill-tag copy-btn" onclick="copyPrompt('prompt1', this)">
+            <i class="fa-solid fa-copy"></i> Copiar Prompt
+          </button>
+        </div>
+      </div>
+
+      <!-- Prompt 2 -->
+      <div class="project-card glass" data-tilt>
+        <img src="https://via.placeholder.com/400x300/0f172a/10b981?text=Lighting+Setup" alt="Lighting Setup" class="prompt-img">
+        <h3>Studio Lighting Setup</h3>
+        <p class="prompt-text" id="prompt2">"Professional studio photography, dramatic rim lighting, custom background lighting setup, green and blue gel lights, sharp focus, 8k resolution, hyperrealistic."</p>
+        <div class="tags-container">
+          <button class="skill-tag copy-btn" onclick="copyPrompt('prompt2', this)">
+            <i class="fa-solid fa-copy"></i> Copiar Prompt
+          </button>
+        </div>
+      </div>
+
+      <!-- Prompt 3 -->
+      <div class="project-card glass" data-tilt>
+        <img src="https://via.placeholder.com/400x300/000000/3b82f6?text=Cloud+Computing" alt="Cloud Tech" class="prompt-img">
+        <h3>Cloud Data Center</h3>
+        <p class="prompt-text" id="prompt3">"Futuristic server room, glowing fiber optic cables, floating holographic data nodes, cyberpunk aesthetics, cinematic depth of field, unreal engine 5 render."</p>
+        <div class="tags-container">
+          <button class="skill-tag copy-btn" onclick="copyPrompt('prompt3', this)">
+            <i class="fa-solid fa-copy"></i> Copiar Prompt
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
