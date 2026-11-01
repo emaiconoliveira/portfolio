@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maicon Oliveira | Mídias Dashboard (Case Study)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Elementos de fundo -->
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <!-- Header -->
+  <header class="glass">
+    <div class="logo">MO.</div>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Início</a></li>
+      <li><a href="index.html#projects">Projetos</a></li>
+      <li><a href="prompts.html">Catálogo AI</a></li>
+      <li><a href="admin.html"><i class="fa-solid fa-lock"></i></a></li>
+    </ul>
+  </header>
+
+  <!-- Hero do Projeto -->
+  <section class="hero glass-panel" style="margin-top: 140px; text-align: left;">
+    <div class="hero-content">
+      <span class="skill-tag" style="margin-bottom: 15px; display: inline-block; color: #10b981; border-color: #10b981;">Estudo de Caso</span>
+      <h1 style="font-size: 2.5rem; margin-bottom: 15px;">Mídias Dashboard</h1>
+      <p class="subtitle" style="margin-bottom: 25px;">Plataforma centralizada de gerenciamento de mídias, controle de fluxos diários e painel administrativo integrado.</p>
+      
+      <div class="tags-container" style="margin-top: 0;">
+        <span class="skill-tag sm-tag">JavaScript (ES6)</span>
+        <span class="skill-tag sm-tag">Python</span>
+        <span class="skill-tag sm-tag">Firebase (Auth, Firestore, Storage)</span>
+        <span class="skill-tag sm-tag">Chart.js</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detalhes do Case Study -->
+  <section class="container">
+    
+    <!-- 1. O Problema -->
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-triangle-exclamation" style="color: #3b82f6; margin-right: 10px;"></i> O Problema</h2>
+      <p style="line-height: 1.8; opacity: 0.9;">
+        Em ambientes operacionais dinâmicos e fluxos de mídia contínuos, equipes frequentemente enfrentam o desafio da fragmentação de informações: links úteis dispersos, controle manual de escalas ou grades e falta de métricas consolidadas de acesso e monitoramento em tempo real. A ausência de um painel centralizado gera perda de tempo operacional e dificulta a tomada rápida de decisões.
+      </p>
+    </div>
+
+    <!-- 2. Motivação -->
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-bullseye" style="color: #10b981; margin-right: 10px;"></i> Por que decidi desenvolvê-lo?</h2>
+      <p style="line-height: 1.8; opacity: 0.9;">
+        O objetivo foi aplicar na prática conceitos avançados de engenharia de software e computação em nuvem, unindo o desenvolvimento frontend moderno com uma arquitetura backend leve e serverless. Queria criar uma ferramenta utilitária real que centralizasse rotinas diárias e demonstrasse competência técnica em gerenciamento de estados, segurança de rotas e persistência de dados.
+      </p>
+    </div>
+
+    <!-- 3. Arquitetura e Tecnologias -->
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-network-wired" style="color: #8b5cf6; margin-right: 10px;"></i> Arquitetura e Tecnologias</h2>
+      <p style="line-height: 1.8; opacity: 0.9; margin-bottom: 20px;">
+        O projeto foi estruturado sob uma arquitetura <strong>Serverless</strong> desacoplada:
+      </p>
+      <ul style="line-height: 1.8; padding-left: 20px;">
+        <li><strong>Frontend:</strong> Desenvolvido com HTML5, CSS3 e JavaScript modular (ES6 Modules), aplicando o conceito de design Glassmorphism e animações reativas baseadas em interações do mouse (Tilt effect).</li>
+        <li><strong>Autenticação:</strong> Gerenciada via Firebase Auth com criptografia e sessões seguras para restringir o acesso ao painel de controle administrativo (`admin.html`).</li>
+        <li><strong>Banco de Dados & Storage:</strong> Utilização do Cloud Firestore para persistência de dados em tempo real e Firebase Storage para gerenciar o upload e CDN de mídias/assets.</li>
+        <li><strong>Analytics:</strong> Integração com Chart.js para renderização dinâmica de gráficos de tráfego e métricas de acesso.</li>
+      </ul>
+    </div>
+
+    <!-- 4. Desafios e Dificuldades -->
+    <div class="glass-panel text-left" style="margin: 0 auto 30px auto; max-width: 100%;">
+      <h2><i class="fa-solid fa-gears" style="color: #f59e0b; margin-right: 10px;"></i> Desafios Técnicos e Dificuldades</h2>
+      <p style="line-height: 1.8; opacity: 0.9;">
+        Um dos principais desafios encontrados envolveu a configuração correta do ciclo de vida assíncrono dos módulos JavaScript do Firebase ao lidar com permissões de CORS e regras de segurança de escrita restritas a usuários autenticados. Ajustar os observadores de estado de autenticação (`onAuthStateChanged`) para alternar dinamicamente entre as telas de login e o dashboard sem recargas indesejadas exigiu um tratamento rigoroso de exceções e controle de escopo nas requisições.
+      </p>
+    </div>
+
+    <!-- 5. Contribuição Pessoal e Resultado -->
+    <div class="grid-2-col" style="gap: 30px; margin-bottom: 50px;">
+      <div class="glass-panel text-left m-0" style="max-width: 100%; margin: 0;">
+        <h2><i class="fa-solid fa-user-gear" style="color: #3b82f6; margin-right: 10px;"></i> O que desenvolvi</h2>
+        <ul style="line-height: 1.8; padding-left: 20px; opacity: 0.9;">
+          <li>Concepção completa do design system e layout em Glassmorphism.</li>
+          <li>Implementação do sistema de autenticação e rotas protegidas no painel administrativo.</li>
+          <li>Lógica de upload de ficheiros e integração direta com os SDKs modulares do Firestore e Storage.</li>
+          <li>Componentização dos scripts de renderização dinâmica de dados.</li>
+        </ul>
+      </div>
+
+      <div class="glass-panel text-left m-0" style="max-width: 100%; margin: 0;">
+        <h2><i class="fa-solid fa-chart-line" style="color: #10b981; margin-right: 10px;"></i> O Resultado</h2>
+        <p style="line-height: 1.8; opacity: 0.9;">
+          O resultado foi uma plataforma robusta, fluida e totalmente funcional hospedada em infraestrutura moderna (GitHub Pages + Firebase). A ferramenta reduziu a dispersão de links e rotinas, servindo como uma prova de conceito sólida (PoC) da minha capacidade de arquitetar aplicações web completas do zero à produção.
+        </p>
+      </div>
+    </div>
+
+    <!-- Botão de Retorno -->
+    <div class="text-center" style="margin-top: 40px;">
+      <a href="index.html#projects" class="btn-glass"><i class="fa-solid fa-arrow-left"></i> Voltar aos Projetos</a>
+    </div>
+
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <p class="text-center" style="padding: 20px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">© Maicon Oliveira</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
