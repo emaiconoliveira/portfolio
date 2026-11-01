@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maicon Oliveira | Portfolio Glassmorphism</title>
+  <title>Maicon Oliveira | Computer Scientist & Cloud</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <!-- Elementos de fundo para destacar a transparência -->
+  <!-- Elementos de fundo -->
   <div class="bg-shape shape-1"></div>
   <div class="bg-shape shape-2"></div>
   <div class="bg-shape shape-3"></div>
@@ -20,9 +20,10 @@
       <div class="logo">MO.</div>
       <ul class="nav-links">
         <li><a href="#home">Início</a></li>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#experience">Experiência</a></li>
         <li><a href="#projects">Projetos</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#about">Sobre</a></li>
         <li><a href="#contact">Contato</a></li>
       </ul>
     </nav>
@@ -32,58 +33,169 @@
   <section id="home" class="hero glass-panel">
     <div class="hero-content">
       <h1>Maicon Oliveira</h1>
-      <p class="subtitle">Cloud Computing • DevOps • Automação • Desenvolvimento Web</p>
+      <p class="subtitle">Computer Scientist | Backend Developer | Cloud Computing</p>
+      <div class="contact-links" style="margin-bottom: 20px;">
+        <span class="skill-tag"><i class="fa-solid fa-location-dot"></i> São Bernardo do Campo, SP</span>
+      </div>
       <a href="#projects" class="btn-glass">Ver Projetos</a>
     </div>
   </section>
 
-  <!-- Projetos -->
-  <section id="projects" class="container">
-    <h2>Projetos em Destaque</h2>
-    <div class="projects-grid">
+  <!-- Sobre Mim -->
+  <section id="about" class="container glass-panel">
+    <h2>Sobre Mim</h2>
+    <p style="text-align: left; line-height: 1.8;">
+      Sou profissional de tecnologia, formado em Ciência da Computação e pós-graduado em Computação na Nuvem, com experiência em ambientes de tecnologia, sistemas e operações de broadcast.
+      Atuo como Técnico de Sistemas de Broadcast na TV Globo, onde desenvolvo minha experiência com sistemas tecnológicos, acompanhamento operacional, monitoramento e análise de ocorrências.
+    </p>
+    <p style="text-align: left; line-height: 1.8;">
+      Busco integrar conhecimentos de desenvolvimento de software e infraestrutura tecnológica para construir aplicações eficientes, escaláveis e capazes de solucionar problemas reais, com foco em Backend (Python, JavaScript), Cloud, Linux e Automação.
+    </p>
+  </section>
+
+  <!-- Experiência & Formação (Lado a Lado no Desktop ou Empilhado) -->
+  <section id="experience" class="container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
       
-      <div class="project-card glass" data-tilt>
-        <h3>Portfolio Moderno</h3>
-        <p>Site profissional responsivo criado com estética Glassmorphism, focado em UI limpa e moderna.</p>
-        <a href="https://github.com/emaiconoliveira/portfolio" target="_blank" class="btn-glass-sm"><i class="fa-brands fa-github"></i> Repositório</a>
+      <!-- Experiência Profissional -->
+      <div class="glass-panel" style="margin: 0; padding: 30px; text-align: left;">
+        <h2 style="text-align: left; margin-bottom: 20px;"><i class="fa-solid fa-briefcase"></i> Experiência</h2>
+        
+        <div style="margin-bottom: 25px;">
+          <h3 style="margin-bottom: 5px;">Globo</h3>
+          <p style="font-size: 0.9rem; color: #10b981; margin-top: 0;">Ago 2022 – Atual</p>
+          <ul style="font-size: 0.9rem; padding-left: 20px; line-height: 1.6;">
+            <li><strong>Técnico de Sistemas de Broadcast</strong> (Dez 2025 - Atual)</li>
+            <li><strong>Operador de Mídias</strong> (Mar 2024 - Dez 2025)</li>
+            <li><strong>Afiliadas e Operadoras</strong> (Ago 2022 - Fev 2024)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="margin-bottom: 5px;">Atento</h3>
+          <p style="font-size: 0.9rem; color: #10b981; margin-top: 0;">Abr 2019 – Ago 2022</p>
+          <ul style="font-size: 0.9rem; padding-left: 20px; line-height: 1.6;">
+            <li>Analista de Conteúdo e Site</li>
+            <li>Supervisor (Backup)</li>
+            <li>Operador de Telemarketing</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="project-card glass" data-tilt>
-        <h3>Dashboard Cloud</h3>
-        <p>Sistema de monitoramento e métricas para acompanhamento de infraestrutura em nuvem e containers Docker/Kubernetes.</p>
-        <a href="#" target="_blank" class="btn-glass-sm"><i class="fa-brands fa-github"></i> Repositório</a>
-      </div>
+      <!-- Formação -->
+      <div class="glass-panel" style="margin: 0; padding: 30px; text-align: left;">
+        <h2 style="text-align: left; margin-bottom: 20px;"><i class="fa-solid fa-graduation-cap"></i> Formação</h2>
+        
+        <div style="margin-bottom: 20px;">
+          <h3 style="margin-bottom: 5px;">Pós-graduação em Cloud Computing</h3>
+          <p style="font-size: 0.9rem; margin: 0;">Unyleya | 2025</p>
+        </div>
 
-      <div class="project-card glass" data-tilt>
-        <h3>Automação Python</h3>
-        <p>Scripts otimizados para processamento de dados, integração de APIs e automação de tarefas repetitivas.</p>
-        <a href="#" target="_blank" class="btn-glass-sm"><i class="fa-brands fa-github"></i> Repositório</a>
+        <div style="margin-bottom: 20px;">
+          <h3 style="margin-bottom: 5px;">Bacharelado em Ciência da Computação</h3>
+          <p style="font-size: 0.9rem; margin: 0;">UNIP | 2020 – 2023</p>
+        </div>
+
+        <div>
+          <h3 style="margin-bottom: 5px;">Técnico em Adm. e Gerenciamento de TI</h3>
+          <p style="font-size: 0.9rem; margin: 0;">SENAI São Paulo | 2016</p>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Skills -->
+  <!-- Projetos em Destaque -->
+  <section id="projects" class="container">
+    <h2>Projetos em Destaque</h2>
+    <p class="subtitle" style="text-align: center;">Principais desenvolvimentos e provas de conceito (PoC)</p>
+    <div class="projects-grid">
+      
+      <div class="project-card glass" data-tilt>
+        <div>
+          <h3>Mídias Dashboard</h3>
+          <p style="font-size: 0.9rem;">Plataforma de gerenciamento de mídias, grade diária, links úteis e controle administrativo.</p>
+        </div>
+        <div style="margin-top: 15px;">
+          <span class="skill-tag" style="font-size: 0.7rem; padding: 4px 8px;">JavaScript</span>
+          <span class="skill-tag" style="font-size: 0.7rem; padding: 4px 8px;">Python</span>
+        </div>
+      </div>
+
+      <div class="project-card glass" data-tilt>
+        <div>
+          <h3>Folder Watcher</h3>
+          <p style="font-size: 0.9rem;">Monitoramento de diretórios em tempo real, identificação de arquivos e organização automatizada.</p>
+        </div>
+        <div style="margin-top: 15px;">
+          <span class="skill-tag" style="font-size: 0.7rem; padding: 4px 8px;">Python</span>
+          <span class="skill-tag" style="font-size: 0.7rem; padding: 4px 8px;">PyQt</span>
+        </div>
+      </div>
+
+      <div class="project-card glass" data-tilt>
+        <div>
+          <h3>Linux Server Deployment</h3>
+          <p style="font-size: 0.9rem;">Laboratório de configuração de servidores Linux, hospedagem de aplicações e containers.</p>
+        </div>
+        <div style="margin-top: 15px;">
+          <span class="skill-tag" style="font-size: 0.7rem; padding: 4px 8px;">Linux</span>
+          <span class="skill-tag" style="font-size: 0.7rem; padding: 4px 8px;">Docker</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills Organizadas -->
   <section id="skills" class="container glass-panel">
-    <h2>Stack Tecnológica</h2>
-    <div class="skills-box">
-      <span class="skill-tag">Python</span>
-      <span class="skill-tag">Docker</span>
-      <span class="skill-tag">Kubernetes</span>
-      <span class="skill-tag">Nginx</span>
-      <span class="skill-tag">Linux</span>
-      <span class="skill-tag">Azure DevOps</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">CSS3</span>
+    <h2>Competências Técnicas</h2>
+    
+    <div style="text-align: left; margin-bottom: 20px;">
+      <h3 style="font-size: 1.1rem; color: #10b981;">Backend & Desenvolvimento</h3>
+      <div class="skills-box" style="justify-content: flex-start;">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">APIs REST</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">SQL</span>
+      </div>
+    </div>
+
+    <div style="text-align: left; margin-bottom: 20px;">
+      <h3 style="font-size: 1.1rem; color: #3b82f6;">Cloud & Infraestrutura</h3>
+      <div class="skills-box" style="justify-content: flex-start;">
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">GCP</span>
+        <span class="skill-tag">Azure</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Redes (TCP/IP, VPN)</span>
+      </div>
+    </div>
+
+    <div style="text-align: left;">
+      <h3 style="font-size: 1.1rem; color: #8b5cf6;">DevOps & Automação</h3>
+      <div class="skills-box" style="justify-content: flex-start;">
+        <span class="skill-tag">Git / GitHub</span>
+        <span class="skill-tag">CI/CD</span>
+        <span class="skill-tag">Shell Script</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Power Apps</span>
+      </div>
     </div>
   </section>
 
   <!-- Contato -->
   <section id="contact" class="container glass-panel text-center">
     <h2>Vamos Conversar?</h2>
+    <p style="margin-bottom: 30px;">Fique à vontade para entrar em contato para oportunidades em Cloud, Backend e Automação.</p>
     <div class="contact-links">
-      <a href="https://linkedin.com" target="_blank" class="btn-glass"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="mailto:maiconcarlosdcpb@live.com" class="btn-glass"><i class="fa-solid fa-envelope"></i> E-mail</a>
+      <a href="https://linkedin.com/in/emaiconoliveira" target="_blank" class="btn-glass"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
       <a href="https://github.com/emaiconoliveira" target="_blank" class="btn-glass"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://wa.me/5511981758648" target="_blank" class="btn-glass"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
     </div>
   </section>
 
