@@ -96,3 +96,59 @@ function copyPrompt(elementId, btnElement) {
     console.error('Falha ao copiar: ', err);
   });
 }
+
+// --- 9. Lógica de Upload de Imagem e Gravação do Prompt ---
+
+const uploadPromptForm = document.getElementById('uploadPromptForm');
+
+if (uploadPromptForm) {
+  uploadPromptForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const title = document.getElementById('promptTitle').value;
+    const text = document.getElementById('promptText').value;
+    const imageFile = document.getElementById('promptImageFile').files[0];
+
+    if (!imageFile) {
+      alert("Por favor, selecione uma imagem.");
+      return;
+    }
+
+    // Altera o texto do botão para dar feedback visual de carregamento
+    const submitBtn = uploadPromptForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Fazendo Upload...';
+    submitBtn.disabled = true;
+
+    try {
+      // 1. Define o caminho no Storage (pasta 'prompts' + timestamp para evitar nome duplicado)
+      const fileName = `prompts/${Date.now()}_${imageFile.name}`;
+      const storageRef = ref(storage, fileName);
+
+      // 2. Faz o upload da imagem física para o Firebase Storage
+      const snapshot = await uploadBytes(storageRef, imageFile);
+      
+      // 3. Obtém a URL pública de download da imagem que acabou de subir
+      const downloadURL = await getDownloadURL(snapshot.ref);
+
+      // 4. Grava o documento no Firestore Database na coleção 'ai_prompts'
+      await addDoc(collection(db, "ai_prompts"), {
+        title: title,
+        promptText: text,
+        imageUrl: downloadURL,
+        createdAt: new Date() // Grava a data para ordenar depois
+      });
+
+      alert("Prompt e Imagem salvos com sucesso no Catálogo!");
+      uploadPromptForm.reset(); // Limpa o formulário
+
+    } catch (error) {
+      console.error("Erro no upload: ", error);
+      alert("Erro ao salvar: " + error.message);
+    } finally {
+      // Retorna o botão ao estado normal
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+    }
+  });
+}
