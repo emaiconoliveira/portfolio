@@ -35,7 +35,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Função de Login corrigida com a importação correta
+// Função de Login tratada
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('adminEmail').value;
