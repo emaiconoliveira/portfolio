@@ -3,129 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maicon Oliveira | AI Photo Prompts</title>
+  <title>Maicon Oliveira | Catálogo de Prompts de IA</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <!-- Elementos de fundo -->
   <div class="bg-shape shape-1"></div>
   <div class="bg-shape shape-2"></div>
   <div class="bg-shape shape-3"></div>
 
-  <!-- Header -->
   <header class="glass">
     <div class="logo">MO.</div>
     <ul class="nav-links">
       <li><a href="index.html#home">Início</a></li>
+      <li><a href="index.html#projects">Projetos</a></li>
       <li><a href="prompts.html" class="highlight-link">Catálogo AI</a></li>
-      <li><a href="admin.html">Configuração</a></li>
+      <li><a href="admin.html"><i class="fa-solid fa-lock"></i></a></li>
     </ul>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero glass-panel" style="margin-top: 150px;">
-    <div class="hero-content">
-      <h1>Catálogo de Prompts</h1>
-      <p class="subtitle">Clique no botão abaixo das imagens para copiar o prompt de geração.</p>
+  <section class="container" style="margin-top: 140px;">
+    <h2>Catálogo de Prompts de IA</h2>
+    <p class="subtitle text-center" style="margin-bottom: 40px;">Explore os prompts gerados e salvos dinamicamente</p>
+    
+    <!-- Container onde os cards serão injetados pelo JavaScript -->
+    <div id="promptsContainer" class="projects-grid">
+      <p class="text-center" style="grid-column: 1 / -1; color: rgba(255,255,255,0.6);">A carregar prompts...</p>
     </div>
   </section>
 
-  <!-- Container do Catálogo Dinâmico -->
-  <section class="container">
-    <!-- O JavaScript do Firebase vai injetar os cards aqui dentro -->
-    <div class="projects-grid" id="catalogGrid"></div>
-  </section>
+  <footer>
+    <p class="text-center" style="padding: 20px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">© Maicon Oliveira</p>
+  </footer>
 
-  <!-- Script base do site (mantém a função copyPrompt global) -->
-  <script src="script.js"></script>
-
-  <!-- Módulo Firebase para carregar os dados do Firestore -->
+  <!-- Script para buscar e renderizar os prompts do Firestore -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
     import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
-    // 1. INSIRA SUAS CHAVES DO FIREBASE AQUI
     const firebaseConfig = {
-      apiKey: "SUA_API_KEY",
-      authDomain: "SEU_PROJETO.firebaseapp.com",
-      projectId: "SEU_PROJETO",
-      storageBucket: "SEU_PROJETO.appspot.com",
-      messagingSenderId: "SEU_ID",
-      appId: "SEU_APP_ID"
+      apiKey: "AIzaSyD_kNnxzQAJbW-oYQjJq5H3aR3ixonby1Q",
+      authDomain: "portfolio-maicon-admin.firebaseapp.com",
+      projectId: "portfolio-maicon-admin",
+      storageBucket: "portfolio-maicon-admin.firebasestorage.app",
+      messagingSenderId: "917407154594",
+      appId: "1:917407154594:web:4e7276e0a163eafcd0f2fb"
     };
 
-    // 2. Inicializa o Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // 3. Função para buscar e exibir os prompts
-    async function carregarPrompts() {
-      const catalogGrid = document.getElementById('catalogGrid');
-      
-      // Mensagem de carregamento inicial
-      catalogGrid.innerHTML = '<p style="text-align:center; width: 100%; color: #10b981;">Carregando catálogo de IA...</p>';
-
+    async function loadPrompts() {
+      const container = document.getElementById('promptsContainer');
       try {
-        // Busca a coleção 'ai_prompts' ordenada do mais recente para o mais antigo
         const q = query(collection(db, "ai_prompts"), orderBy("createdAt", "desc"));
         const querySnapshot = await getDocs(q);
-
-        catalogGrid.innerHTML = ''; // Limpa a mensagem de carregamento
-
-        if(querySnapshot.empty) {
-           catalogGrid.innerHTML = '<p style="text-align:center; width: 100%;">Nenhum prompt cadastrado no momento.</p>';
-           return;
+        
+        if (querySnapshot.empty) {
+          container.innerHTML = '<p class="text-center" style="grid-column: 1 / -1; color: rgba(255,255,255,0.6);">Nenhum prompt cadastrado ainda.</p>';
+          return;
         }
 
-        // Para cada documento no banco, cria um card
+        container.innerHTML = '';
         querySnapshot.forEach((doc) => {
-          const prompt = doc.data();
-          const promptId = doc.id; // ID único gerado pelo Firebase
-
+          const data = doc.data();
+          
           const card = document.createElement('div');
           card.className = 'project-card glass';
-          card.setAttribute('data-tilt', 'true');
-          
           card.innerHTML = `
-            <img src="${prompt.imageUrl}" alt="${prompt.title}" class="prompt-img" style="margin-bottom: 10px;">
-            <h3 style="text-align: center; font-size: 1rem;">${prompt.title}</h3>
-            <p id="text-${promptId}" style="display: none;">${prompt.promptText}</p>
-            <button class="skill-tag copy-btn" onclick="copyPrompt('text-${promptId}', this)" style="width: 100%; margin-top: auto; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);">
+            <div>
+              ${data.imageUrl ? `<img src="${data.imageUrl}" alt="${data.title}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">` : ''}
+              <h3>${data.title}</h3>
+              <p style="font-size: 0.9rem; opacity: 0.8; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; margin-top: 10px; word-break: break-word;">${data.promptText}</p>
+            </div>
+            <button class="btn-glass sm-tag copy-btn" style="margin-top: 15px; width: 100%; cursor: pointer;" data-text="${data.promptText}">
               <i class="fa-solid fa-copy"></i> Copiar Prompt
             </button>
           `;
-          
-          // Adiciona o efeito Tilt (Glassmorfismo) dinamicamente aos novos cards
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; 
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const tiltX = ((x - centerX) / centerX) * 5; 
-            const tiltY = ((y - centerY) / centerY) * -5;
-            card.style.transform = `perspective(1000px) rotateX(${tiltY}deg) rotateY(${tiltX}deg) translateY(-5px)`;
-          });
-          card.addEventListener('mouseleave', () => {
-            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-            card.style.transition = 'transform 0.5s ease'; 
-          });
-          card.addEventListener('mouseenter', () => {
-            card.style.transition = 'none'; 
-          });
+          container.appendChild(card);
+        });
 
-          catalogGrid.appendChild(card);
+        // Adiciona funcionalidade de clique para copiar o texto do prompt
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const textToCopy = e.currentTarget.getAttribute('data-text');
+            navigator.clipboard.writeText(textToCopy);
+            const originalHTML = e.currentTarget.innerHTML;
+            e.currentTarget.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+            setTimeout(() => {
+              e.currentTarget.innerHTML = originalHTML;
+            }, 2000);
+          });
         });
 
       } catch (error) {
-        console.error("Erro ao buscar prompts:", error);
-        catalogGrid.innerHTML = '<p style="text-align:center; width: 100%; color: #ff0055;">Erro ao carregar o catálogo. Verifique o console para mais detalhes.</p>';
+        console.error("Erro ao carregar prompts:", error);
+        container.innerHTML = '<p class="text-center" style="grid-column: 1 / -1; color: #ef4444;">Erro ao carregar os prompts do banco de dados.</p>';
       }
     }
 
-    // Chama a função assim que a página carrega
-    carregarPrompts();
+    loadPrompts();
   </script>
 </body>
 </html>
