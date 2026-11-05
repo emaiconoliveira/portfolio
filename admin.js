@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js";
 
 // SUAS CHAVES REAIS DO FIREBASE
 const firebaseConfig = {
@@ -16,7 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
 const loginScreen = document.getElementById('loginScreen');
 const adminDashboard = document.getElementById('adminDashboard');
@@ -35,7 +33,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Função de Login tratada
+// Função de Login
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('adminEmail').value;
@@ -95,6 +93,16 @@ function renderChart() {
   });
 }
 
+// Função auxiliar para converter o arquivo de imagem em Base64 de forma otimizada
+function convertFileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
 if (uploadPromptForm) {
   uploadPromptForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -104,28 +112,35 @@ if (uploadPromptForm) {
 
     if (!imageFile) return alert("Selecione uma imagem.");
 
+    const currentUser = auth.currentUser;
+    if (!currentUser) {
+      alert("Erro: Você precisa estar logado!");
+      return;
+    }
+
     const submitBtn = uploadPromptForm.querySelector('button[type="submit"]');
     const originalBtnText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> A fazer Upload...';
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> A processar imagem...';
     submitBtn.disabled = true;
 
     try {
-      const fileName = `prompts/${Date.now()}_${imageFile.name}`;
-      const storageRef = ref(storage, fileName);
-      const snapshot = await uploadBytes(storageRef, imageFile);
-      const downloadURL = await getDownloadURL(snapshot.ref);
+      // Converte a imagem para Base64 diretamente no browser (Sem usar o Storage/CORS)
+      const base64Image = await convertFileToBase64(imageFile);
 
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> A salvar no Firestore...';
+
+      // Salva direto no Firestore
       await addDoc(collection(db, "ai_prompts"), {
         title: title,
         promptText: text,
-        imageUrl: downloadURL,
+        imageUrl: base64Image,
         createdAt: new Date()
       });
 
-      alert("Prompt salvo com sucesso!");
+      alert("Prompt e imagem salvos com sucesso no Catálogo!");
       uploadPromptForm.reset();
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao salvar:", error);
       alert("Erro ao salvar: " + error.message);
     } finally {
       submitBtn.innerHTML = originalBtnText;
