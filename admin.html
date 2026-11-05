@@ -3,79 +3,439 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard | Maicon Oliveira</title>
+  <title>Maicon Oliveira | Painel Administrativo</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Estilos customizados para o painel estilo vitrine */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+    .product-card {
+      background: #ffffff;
+      color: #1f2937;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px;
+      text-align: center;
+    }
+    .product-image-container {
+      width: 100%;
+      height: 140px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f3f4f6;
+      margin-bottom: 12px;
+    }
+    .product-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .product-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    .prompt-snippet {
+      font-size: 0.8rem;
+      color: #6b7280;
+      background: #f9fafb;
+      padding: 8px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      max-height: 50px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      text-align: left;
+    }
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .btn-edit {
+      background-color: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 15px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-edit:hover {
+      background-color: #2563eb;
+    }
+    .btn-delete {
+      background-color: #ef4444;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 6px 15px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-delete:hover {
+      background-color: #dc2626;
+    }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+  </style>
 </head>
 <body>
   <div class="bg-shape shape-1"></div>
   <div class="bg-shape shape-2"></div>
   <div class="bg-shape shape-3"></div>
 
-  <header class="glass">
-    <div class="logo">MO.</div>
-    <ul class="nav-links">
-      <li><a href="index.html#home">Início</a></li>
-      <li><a href="prompts.html">Catálogo AI</a></li>
-      <li><a href="admin.html" class="highlight-link"><i class="fa-solid fa-lock"></i></a></li>
-    </ul>
-  </header>
-
-  <section id="loginScreen" class="container glass-panel" style="max-width: 400px; margin-top: 150px;">
-    <h2 class="text-center"><i class="fa-solid fa-lock"></i> Acesso Restrito</h2>
-    <form id="loginForm">
-      <div class="form-group">
-        <label>E-mail</label>
-        <input type="email" id="adminEmail" required>
-      </div>
-      <div class="form-group">
-        <label>Senha</label>
-        <input type="password" id="adminPassword" required>
-      </div>
-      <button type="submit" class="btn-glass" style="width: 100%; margin-top: 10px;">Entrar</button>
-    </form>
-  </section>
-
-  <section id="adminDashboard" class="container admin-container glass">
-    <div style="padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center;">
-      <h2 class="m-0">Painel de Controle</h2>
-      <button id="logoutBtn" class="btn-glass" style="padding: 6px 15px; font-size: 0.8rem;"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
+  <!-- Tela de Login -->
+  <div id="loginScreen" class="container" style="max-width: 400px; margin-top: 150px;">
+    <div class="glass-panel text-center">
+      <h2><i class="fa-solid fa-lock"></i> Painel Administrativo</h2>
+      <p class="subtitle" style="margin-bottom: 20px;">Faça login para gerenciar o conteúdo</p>
+      <form id="loginForm" style="display: flex; flex-direction: column; gap: 15px;">
+        <input type="email" id="adminEmail" placeholder="E-mail" required style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: #fff;">
+        <input type="password" id="adminPassword" placeholder="Palavra-passe" required style="padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: #fff;">
+        <button type="submit" class="btn-glass" style="cursor: pointer; width: 100%;">Entrar</button>
+      </form>
     </div>
-    <div class="dashboard-layout" style="padding: 20px;">
-      <div class="sidebar">
-        <button class="tab-btn active" onclick="switchTab('analytics')"><i class="fa-solid fa-chart-line"></i> Analytics</button>
-        <button class="tab-btn" onclick="switchTab('promptManager')"><i class="fa-solid fa-image"></i> Catálogo de Prompts</button>
+  </div>
+
+  <!-- Dashboard Principal -->
+  <div id="adminDashboard" style="display: none;">
+    <header class="glass">
+      <div class="logo">MO. Admin</div>
+      <ul class="nav-links">
+        <li><a href="index.html" target="_blank">Ver Portfólio</a></li>
+        <li><button id="logoutBtn" class="btn-glass sm-tag" style="cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i> Sair</button></li>
+      </ul>
+    </header>
+
+    <div class="container" style="margin-top: 120px;">
+      <!-- Abas de Navegação -->
+      <div class="glass-panel" style="display: flex; gap: 15px; margin-bottom: 30px; padding: 15px;">
+        <button class="btn-glass tab-btn active" onclick="switchTab('analyticsTab')"><i class="fa-solid fa-chart-line"></i> Visão Geral</button>
+        <button class="btn-glass tab-btn" onclick="switchTab('promptsTab')"><i class="fa-solid fa-wand-magic-sparkles"></i> Catálogo de Prompts</button>
       </div>
-      <div class="admin-content">
-        <div id="analytics" class="tab-section active">
-          <h3>Tráfego do Portfólio</h3>
-          <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-top: 15px;">
-            <canvas id="visitsChart" height="100"></canvas>
+
+      <!-- Aba 1: Analytics -->
+      <div id="analyticsTab" class="tab-section active glass-panel text-left">
+        <h2>Métricas de Acesso</h2>
+        <p class="subtitle" style="margin-bottom: 20px;">Monitoramento de tráfego e interações no portfólio</p>
+        <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px;">
+          <canvas id="visitsChart" style="max-height: 300px;"></canvas>
+        </div>
+      </div>
+
+      <!-- Aba 2: Catálogo de Prompts -->
+      <div id="promptsTab" class="tab-section glass-panel text-left">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px;">
+          <div>
+            <h2>Gerenciamento do Catálogo</h2>
+            <p class="subtitle">Adicione, edite ou remova os prompts exibidos no portfólio</p>
           </div>
+          <button class="btn-glass" onclick="openCreateModal()" style="cursor: pointer;"><i class="fa-solid fa-plus"></i> Criar Novo Prompt</button>
         </div>
-        <div id="promptManager" class="tab-section">
-          <h3>Adicionar ao Catálogo IA</h3>
-          <form id="uploadPromptForm">
-            <div class="form-group">
-              <label>Título do Prompt</label>
-              <input type="text" id="promptTitle" required>
-            </div>
-            <div class="form-group">
-              <label>Fazer Upload da Imagem</label>
-              <input type="file" id="promptImageFile" accept="image/*" required style="background: rgba(0,0,0,0.1);">
-            </div>
-            <div class="form-group">
-              <label>Texto do Prompt de Geração</label>
-              <textarea id="promptText" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn-glass"><i class="fa-solid fa-cloud-arrow-up"></i> Fazer Upload e Salvar</button>
-          </form>
+
+        <!-- Vitrine de Prompts Cadastrados -->
+        <div id="adminPromptsContainer" class="catalog-grid">
+          <p class="text-center" style="grid-column: 1 / -1; color: rgba(255,255,255,0.6);">A carregar prompts...</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <script type="module" src="admin.js"></script>
+  <!-- Modal de Criação / Edição -->
+  <div id="promptModal" class="modal-overlay">
+    <div class="modal-content">
+      <h3 id="modalTitle" style="margin-bottom: 20px;">Criar Novo Prompt</h3>
+      <form id="modalPromptForm" style="display: flex; flex-direction: column; gap: 15px;">
+        <input type="hidden" id="promptId">
+        <div>
+          <label style="font-size: 0.9rem; display: block; margin-bottom: 5px;">Título do Prompt</label>
+          <input type="text" id="promptTitle" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: #fff;">
+        </div>
+        <div>
+          <label style="font-size: 0.9rem; display: block; margin-bottom: 5px;">Texto do Prompt</label>
+          <textarea id="promptText" rows="4" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: #fff; resize: vertical;"></textarea>
+        </div>
+        <div>
+          <label style="font-size: 0.9rem; display: block; margin-bottom: 5px;">Imagem (Opcional na edição)</label>
+          <input type="file" id="promptImageFile" accept="image/*" style="width: 100%; color: #cbd5e1;">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+          <button type="button" class="btn-glass sm-tag" onclick="closeModal()" style="cursor: pointer;">Cancelar</button>
+          <button type="submit" class="btn-glass sm-tag" style="background: #10b981; cursor: pointer;">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p class="text-center" style="padding: 20px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">© Maicon Oliveira</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD_kNnxzQAJbW-oYQjJq5H3aR3ixonby1Q",
+      authDomain: "portfolio-maicon-admin.firebaseapp.com",
+      projectId: "portfolio-maicon-admin",
+      storageBucket: "portfolio-maicon-admin.firebasestorage.app",
+      messagingSenderId: "917407154594",
+      appId: "1:917407154594:web:4e7276e0a163eafcd0f2fb"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const loginScreen = document.getElementById('loginScreen');
+    const adminDashboard = document.getElementById('adminDashboard');
+    const loginForm = document.getElementById('loginForm');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const modalPromptForm = document.getElementById('modalPromptForm');
+    const promptModal = document.getElementById('promptModal');
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginScreen.style.display = 'none';
+        adminDashboard.style.display = 'block';
+        renderChart();
+        loadAdminPrompts();
+      } else {
+        loginScreen.style.display = 'block';
+        adminDashboard.style.display = 'none';
+      }
+    });
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('adminEmail').value;
+      const password = document.getElementById('adminPassword').value;
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        alert("Erro ao logar: " + error.message);
+      }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      signOut(auth);
+    });
+
+    window.switchTab = function(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    };
+
+    window.openCreateModal = function() {
+      document.getElementById('modalTitle').innerText = "Criar Novo Prompt";
+      document.getElementById('promptId').value = "";
+      document.getElementById('promptTitle').value = "";
+      document.getElementById('promptText').value = "";
+      document.getElementById('promptImageFile').value = "";
+      promptModal.style.display = 'flex';
+    };
+
+    window.closeModal = function() {
+      promptModal.style.display = 'none';
+    };
+
+    function resizeAndConvertImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+          const img = new Image();
+          img.src = event.target.result;
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            const MAX_WIDTH = 800;
+            const MAX_HEIGHT = 800;
+            if (width > height) {
+              if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+            } else {
+              if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', 0.7));
+          };
+          img.onerror = reject;
+        };
+        reader.onerror = reject;
+      });
+    }
+
+    async function loadAdminPrompts() {
+      const container = document.getElementById('adminPromptsContainer');
+      try {
+        const q = query(collection(db, "ai_prompts"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        if (querySnapshot.empty) {
+          container.innerHTML = '<p class="text-center" style="grid-column: 1 / -1; color: rgba(255,255,255,0.6);">Nenhum prompt cadastrado.</p>';
+          return;
+        }
+
+        container.innerHTML = '';
+        querySnapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = `
+            <div>
+              <div class="product-image-container">
+                ${data.imageUrl ? `<img src="${data.imageUrl}" alt="${data.title}">` : '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#9ca3af;"><i class="fa-solid fa-image fa-2x"></i></div>'}
+              </div>
+              <h3 class="product-title">${data.title}</h3>
+              <div class="prompt-snippet">${data.promptText}</div>
+            </div>
+            <div class="admin-actions">
+              <button class="btn-edit" onclick="editPrompt('${docSnap.id}', '${encodeURIComponent(data.title)}', '${encodeURIComponent(data.promptText)}', '${data.imageUrl || ''}')">
+                <i class="fa-solid fa-pen"></i> Editar
+              </button>
+              <button class="btn-delete" onclick="deletePrompt('${docSnap.id}')">
+                <i class="fa-solid fa-trash"></i> Excluir
+              </button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } catch (error) {
+        console.error("Erro ao carregar:", error);
+      }
+    }
+
+    window.editPrompt = function(id, title, text, imageUrl) {
+      document.getElementById('modalTitle').innerText = "Editar Prompt";
+      document.getElementById('promptId').value = id;
+      document.getElementById('promptTitle').value = decodeURIComponent(title);
+      document.getElementById('promptText').value = decodeURIComponent(text);
+      promptModal.style.display = 'flex';
+    };
+
+    window.deletePrompt = async function(id) {
+      if (confirm("Tem certeza que deseja excluir este prompt?")) {
+        try {
+          await deleteDoc(doc(db, "ai_prompts", id));
+          alert("Prompt excluído com sucesso!");
+          loadAdminPrompts();
+        } catch (error) {
+          alert("Erro ao excluir: " + error.message);
+        }
+      }
+    };
+
+    modalPromptForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('promptId').value;
+      const title = document.getElementById('promptTitle').value;
+      const text = document.getElementById('promptText').value;
+      const imageFile = document.getElementById('promptImageFile').files[0];
+
+      try {
+        let imageUrl = null;
+        if (imageFile) {
+          imageUrl = await resizeAndConvertImage(imageFile);
+        }
+
+        if (id) {
+          // Atualizar
+          const updateData = { title: title, promptText: text };
+          if (imageUrl) updateData.imageUrl = imageUrl;
+          await updateDoc(doc(db, "ai_prompts", id), updateData);
+          alert("Prompt atualizado com sucesso!");
+        } else {
+          // Criar novo
+          await addDoc(collection(db, "ai_prompts"), {
+            title: title,
+            promptText: text,
+            imageUrl: imageUrl || '',
+            createdAt: new Date()
+          });
+          alert("Prompt criado com sucesso!");
+        }
+
+        closeModal();
+        loadAdminPrompts();
+      } catch (error) {
+        alert("Erro ao salvar: " + error.message);
+      }
+    });
+
+    function renderChart() {
+      const ctx = document.getElementById('visitsChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+          datasets: [{
+            label: 'Acessos ao Portfólio',
+            data: [12, 19, 15, 25, 22, 30, 28],
+            borderColor: '#10b981',
+            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { labels: { color: '#fff' } } },
+          scales: {
+            x: { ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+            y: { ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>
