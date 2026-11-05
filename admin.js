@@ -93,7 +93,7 @@ function renderChart() {
   });
 }
 
-// Função auxiliar para converter o arquivo de imagem em Base64 de forma otimizada
+// Converte a imagem para Base64 (Sem usar Storage, zero CORS)
 function convertFileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -124,12 +124,11 @@ if (uploadPromptForm) {
     submitBtn.disabled = true;
 
     try {
-      // Converte a imagem para Base64 diretamente no browser (Sem usar o Storage/CORS)
       const base64Image = await convertFileToBase64(imageFile);
 
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> A salvar no Firestore...';
 
-      // Salva direto no Firestore
+      // Grava diretamente no banco de dados Firestore
       await addDoc(collection(db, "ai_prompts"), {
         title: title,
         promptText: text,
